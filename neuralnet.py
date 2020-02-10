@@ -15,6 +15,13 @@ class NeuralNet:
             nl.NeuralLayer(size, self.layers[-1].get_row(), len(self.layers)))
         return
 
+    def feedforward(self):
+        for i in range(len(self.layers)):
+            if i == 0:
+                self.layers[i].feedforward(self.layers[i].data)
+                return
+            self.layers[i].feedforward(self.layers[i - 1].data)
+
     def dump_layers(self):
         for layer in self.layers:
             layer.dump()

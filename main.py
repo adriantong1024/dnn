@@ -2,7 +2,6 @@ from mlxtend.data import loadlocal_mnist
 import numpy as np
 import neuralnet as nn
 
-
 def load_data(image_path, label_path):
     return loadlocal_mnist(image_path, label_path)
 
@@ -18,4 +17,5 @@ if __name__ == "__main__":
     dnn.add_single_layer(5)
     dnn.add_single_layer(5)
     dnn.add_single_layer(1)
+    dnn.feedforward()
     dnn.dump()
