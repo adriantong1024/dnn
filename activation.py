@@ -37,7 +37,8 @@ class ReLU:
         return np.maximum(data, zeros)
 
     def backward(self, data):
-        return
+        zeros = np.zeros(data.shape, dtype=np.float)
+        return np.greater_equal(data, zeros).astype(dtype=np.float)
 
 
 class SoftMax:
