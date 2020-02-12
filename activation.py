@@ -38,3 +38,16 @@ class ReLU:
 
     def backward(self, data):
         return
+
+
+class SoftMax:
+    def __init__(self):
+        return
+
+    def feedforward(self, data):
+        # normalize the data by subtracting over the max.
+        maxn = np.amax(data, axis=0)
+        data = np.subtract(data, maxn)
+        # smax(xn)=exp(xn)/sum(exp(x1), exp(x2), ... exp(xm))
+        data = np.exp(data)
+        return np.divide(data, np.sum(data, axis=0))

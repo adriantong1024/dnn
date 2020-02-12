@@ -6,6 +6,8 @@ class NeuralNet:
     def __init__(self):
         # layers of the network.
         self.layers = []
+        # set the random seed for layer weights initialization later.
+        np.random.seed(1024)
 
     def add_single_layer(self,
                          size,
@@ -31,5 +33,11 @@ class NeuralNet:
         for layer in self.layers:
             layer.dump()
 
+    def dump_layer(self, index):
+        self.layers[index].dump()
+
     def dump(self):
         self.dump_layers()
+
+    def get_layer(self, index):
+        return self.layers[index]

@@ -19,7 +19,6 @@ class NeuralLayer:
                         self.weights[r][c] = 0.0
                 else:
                     self.weights[r][c] = np.random.normal()
-        return
 
     def dump_weights(self):
         print("This layer weight with dimension {}x{} is \n".format(

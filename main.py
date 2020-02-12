@@ -19,6 +19,12 @@ if __name__ == "__main__":
     dnn.add_single_layer(X.transpose().shape[0], act.Identity(), True,
                          X.transpose())
     dnn.add_single_layer(5, act.ReLU(), False)
-    dnn.add_single_layer(1, act.ReLU(), False)
+    dnn.add_single_layer(10, act.ReLU(), False)
+    dnn.add_single_layer(10, act.SoftMax(), True)
     dnn.feedforward()
     dnn.dump()
+
+    # dnn.dump_layer(len(dnn.layers)-1)
+    # layer=dnn.get_layer(len(dnn.layers)-1)
+    # data=np.sum(layer.output, axis=0)
+    # print (data, data.shape)
