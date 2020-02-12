@@ -18,7 +18,7 @@ if __name__ == "__main__":
     dnn = nn.NeuralNet()
     dnn.add_single_layer(X.transpose().shape[0], act.Identity(), True,
                          X.transpose())
-    dnn.add_single_layer(5, act.Sigmoid(), False)
-    dnn.add_single_layer(1, act.Sigmoid(), False)
+    dnn.add_single_layer(5, act.ReLU(), False)
+    dnn.add_single_layer(1, act.ReLU(), False)
     dnn.feedforward()
     dnn.dump()

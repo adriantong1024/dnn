@@ -25,3 +25,16 @@ class Sigmoid:
 
     def backward(self, data):
         return np.multiply(self.compute(data), (1 - self.compute(data)))
+
+
+class ReLU:
+    def __init__(self):
+        return
+
+    def feedforward(self, data):
+        # relu(x) is max(0, x)
+        zeros = np.zeros(data.shape, dtype=np.float)
+        return np.maximum(data, zeros)
+
+    def backward(self, data):
+        return
