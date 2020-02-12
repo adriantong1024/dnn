@@ -56,4 +56,3 @@ class NeuralLayer:
 
         # initialize data.
         self.output = output
-        return
