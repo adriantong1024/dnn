@@ -1,6 +1,17 @@
 import numpy as np
 
 
+class Identity:
+    def __init__(self):
+        return
+
+    def compute(self, data):
+        return data
+
+    def feedforward(self, data):
+        return self.compute(data)
+
+
 class Sigmoid:
     def __init__(self):
         return

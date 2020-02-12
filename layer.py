@@ -1,5 +1,4 @@
 import numpy as np
-import neuraloperator as nop
 
 
 class NeuralLayer:
@@ -23,24 +22,28 @@ class NeuralLayer:
         return
 
     def dump_weights(self):
-        print("This layer weight is\n", self.weights)
+        print("This layer weight with dimension {}x{} is \n".format(
+            self.weights.shape[0], self.weights.shape[1]), self.weights)
 
-    def dump_data(self):
-        print("This layer output data is\n", self.data)
+    def dump_output(self):
+        print("This layer output with dimension {}x{} is\n".format(
+            self.output.shape[0], self.output.shape[1]), self.output)
 
     def dump(self):
-        print("This is the {} layer with dimension {}x1".format(
-            self.layer_num, self.weights.shape[0]))
+        print("\nThis is the {} layer".format(self.layer_num))
         self.dump_weights()
-        self.dump_data()
+        self.dump_output()
 
-    def feedforward(self, prev_data):
+    def feedforward(self, prev_output):
         # compute the this layer data.
-        data = self.weights.dot(prev_data)
+        self.output = self.weights.dot(prev_output)
         # apply the nonlinear operator to the data of this layer.
-        data = self.operator.feedforward(data)
+        self.output = self.operator.feedforward(self.output)
 
-    def __init__(self, r, c, num, identity=False):
+    def initialize_output(self, output):
+        self.output = output
+
+    def __init__(self, r, c, num, activation, identity, output):
         # the number of the layer, start with zero.
         self.layer_num = num
         # weights of this layer.
@@ -49,10 +52,9 @@ class NeuralLayer:
         # initialize the weights.
         self.initialize_weights(identity)
 
-        # initialize data.
-        self.data = np.array((0, 0), dtype=np.float)
-        self.data.resize((r, 1))
-
         # initialze operator. sigmoid for now.
-        self.operator = nop.Sigmoid()
+        self.operator = activation
+
+        # initialize data.
+        self.output = output
         return

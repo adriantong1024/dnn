@@ -1,6 +1,8 @@
 from mlxtend.data import loadlocal_mnist
 import numpy as np
-import neuralnet as nn
+import net as nn
+import activation as act
+
 
 def load_data(image_path, label_path):
     return loadlocal_mnist(image_path, label_path)
@@ -14,8 +16,9 @@ if __name__ == "__main__":
 
     # build the neural network.
     dnn = nn.NeuralNet()
-    dnn.add_single_layer(5)
-    dnn.add_single_layer(5)
-    dnn.add_single_layer(1)
+    dnn.add_single_layer(X.transpose().shape[0], act.Identity(), True,
+                         X.transpose())
+    dnn.add_single_layer(5, act.Sigmoid(), False)
+    dnn.add_single_layer(1, act.Sigmoid(), False)
     dnn.feedforward()
     dnn.dump()
