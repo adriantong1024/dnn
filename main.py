@@ -3,10 +3,8 @@ import numpy as np
 import net as nn
 import activation as act
 
-
 def load_data(image_path, label_path):
     return loadlocal_mnist(image_path, label_path)
-
 
 if __name__ == "__main__":
     # load the mnist dataset.
@@ -22,9 +20,5 @@ if __name__ == "__main__":
     dnn.add_single_layer(10, act.ReLU(), False)
     dnn.add_single_layer(10, act.SoftMax(), True)
     dnn.feedforward()
-    dnn.dump()
 
-    # dnn.dump_layer(len(dnn.layers)-1)
-    # layer=dnn.get_layer(len(dnn.layers)-1)
-    # data=np.sum(layer.output, axis=0)
-    # print (data, data.shape)
+
